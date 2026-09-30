@@ -1,6 +1,17 @@
 default:
     @just --list
 
+server-dev *args:
+    @cargo run -p pomme-server -- {{ args }}
+
+server-build *args:
+    @cargo build -p pomme-server {{ args }}
+
+server-pre-pr:
+    @cargo fmt -p pomme-server -- --check
+    @cargo clippy -p pomme-server --all-targets -- -D warnings
+    @cargo test -p pomme-server
+
 launcher-dev *args:
     @pnpm --filter pomme-launcher tauri dev {{ args }}
 

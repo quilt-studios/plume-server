@@ -5315,6 +5315,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "pomme-server"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.20",
+ "tokio",
+ "tokio-util",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "pomme-singleplayer"
 version = "0.1.0"
 dependencies = [

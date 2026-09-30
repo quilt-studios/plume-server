@@ -1,0 +1,16 @@
+[package]
+name = "pomme-server"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-or-later"
+description = "Headless, extensible Pomme game server"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { version = "0.7", features = ["rt"] }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true, features = ["env-filter"] }

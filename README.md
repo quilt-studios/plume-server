@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">Pomme</h1>
-  <p align="center">A high-performance Minecraft client written in Rust</p>
+  <p align="center">High-performance Minecraft software written in Rust</p>
   <p align="center">
     <a href="https://discord.gg/ucBA55bHPR">Discord</a> · <a href="https://github.com/PommeMC/Client/issues">Issues</a> · <a href="https://github.com/PommeMC/Client/releases">Releases</a>
   </p>
@@ -34,6 +34,7 @@ alternative to the official Java client.
 ## Architecture
 
 ```bash
+pomme-server/         # Headless server, plugin host, and optional status renderer
 pomme-client/         # Minecraft client (Rust, Vulkan)
 pomme-launcher/       # Launcher app (Tauri, React, TypeScript)
 pomme-protocol/       # Per-version protocol data and wire encoding
@@ -44,6 +45,11 @@ third_party/SteelMC/  # SteelMC submodule
 tools/                # protogen, blockgen, stategen, and the OpenAL fetch script
 ```
 
+The dedicated server can run without a graphics environment, supports an
+optional terminal renderer, and provides process-isolated plugins. See the
+[server README](./pomme-server/README.md) for its protocol, command-line flags,
+and plugin manifest format.
+
 The client is a standalone binary that receives launch arguments from
 the launcher. The launcher handles authentication, asset downloading,
 version management, and spawns the client with the appropriate flags.
@@ -52,6 +58,15 @@ version management, and spawns the client with the appropriate flags.
 
 Before building, you must have [just](https://github.com/casey/just) installed.
 The Rust toolchain is pinned in `rust-toolchain.toml`; rustup picks it up.
+
+### Server
+
+The server has no Vulkan or launcher dependency:
+
+```bash
+cargo build -p pomme-server --release
+cargo run -p pomme-server -- --rendering off
+```
 
 ### Client
 
